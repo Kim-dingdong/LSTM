@@ -80,11 +80,18 @@ font_path = "C:/Windows/Fonts/malgun.ttf"
 font_name = font_manager.FontProperties(fname=font_path).get_name()
 plt.rcParams["font.family"] = font_name
 
-# 6. 시각화 (전체 + 실제 + 예측)
+# 6. 시각화 (전체 + 실제 + 예측 + 성능 지표 표시)
 plt.figure(figsize=(12,6))
 plt.plot(df.index, df['close'], label='전체 비트코인 가격', alpha=0.3)
-plt.plot(df.index[-len(actual_price):], actual_price, label='실제 비트코인 가격 (USD)')
-plt.plot(df.index[-len(predicted_price):], predicted_price, label='예측 가격 (LSTM)', linestyle='--')
+plt.plot(df.index[-len(actual_price):], actual_price, label='실제 비트코인 가격 (USD)', color='blue')
+plt.plot(df.index[-len(predicted_price):], predicted_price, label='예측 가격 (LSTM)', linestyle='--', color='orange')
+
+# 성능 지표 텍스트 추가 (우측 상단)
+textstr = f"MAE: ${mae:,.2f}\nRMSE: ${rmse:,.2f}"
+plt.gca().annotate(textstr, xy=(0.98, 0.95), xycoords='axes fraction',
+                   fontsize=10, ha='right', va='top',
+                   bbox=dict(boxstyle="round,pad=0.4", facecolor='white', alpha=0.7),
+                   fontproperties=font_manager.FontProperties(fname=font_path))
 
 plt.gca().xaxis.set_major_locator(mdates.MonthLocator(interval=3))
 plt.gca().xaxis.set_major_formatter(mdates.DateFormatter('%Y-%m'))
@@ -92,12 +99,13 @@ plt.gca().yaxis.set_major_formatter(ticker.FuncFormatter(lambda x, _: f'${int(x)
 
 plt.xlabel('날짜')
 plt.ylabel('가격 (USD)')
-plt.title('LSTM 기반 비트코인 가격 예측 결과', fontsize=14)
+plt.title('저장된 모델 기반 비트코인 가격 예측 결과', fontsize=14)
 plt.legend()
 plt.grid(True)
 plt.xticks(rotation=45)
 plt.tight_layout()
 plt.show()
+
 
 # ... 앞부분 동일 (데이터 수집, 전처리, 학습 등)
 

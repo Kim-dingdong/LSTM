@@ -1,0 +1,49 @@
+# ✅ Python 기본
+__pycache__/
+*.py[cod]
+*.so
+*.egg-info/
+*.log
+
+# ✅ 가상환경
+venv/
+.venv/
+env/
+tf-env/
+
+# ✅ Jupyter Notebook 체크포인트
+.ipynb_checkpoints/
+
+# ✅ 운영체제별 불필요한 파일
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# ✅ 편집기 관련 설정 폴더
+.vscode/
+.idea/
+
+# ✅ 모델 파일 및 결과물
+*.h5
+*.keras
+*.ckpt
+*.tflite
+*.onnx
+*.pth
+*.pt
+*.pb
+*.parquet
+
+# ✅ 데이터/임시 파일
+*.csv
+*.tsv
+*.zip
+*.tar.gz
+*.bak
+*.tmp
+
+# ✅ VSCode Git 내부 파일
+.git/
+
+# ✅ 기타
+.env
